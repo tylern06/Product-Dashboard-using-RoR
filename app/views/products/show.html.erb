@@ -1,0 +1,36 @@
+<html lang="en">
+	<head>
+	    <title>Show</title>
+	</head>
+	<body>
+		 <% if flash[:error] %>
+		 	<p><%= flash[:error] %></p>
+		 <% end %>
+		<div id='display'>
+			<p>Name: <%= @product.name %></p>
+			<p>Description: <%= @product.description %></p>
+			<p>Price: $<%= @product.price %></p>
+			<a href="/products/<%= @product.id %>/edit">Edit</a>
+			<a href="/products">Back</a>
+		</div>
+			<!-- <h2>Comment</h2> -->
+			<p><%= simple_form_for @comment, url: comment_create_path do |f|%>
+				<%= f.input :comment %>
+
+				<%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
+				<%= f.button :submit %>
+			<% end %>
+		</p>
+		<div id='comments'>
+			<% @comments.each do |comment| %>
+				<% if comment.product_id == @product.id%>	
+					<p><%= comment.created_at.strftime("%b. %d, %Y") %> </p>
+					 <p><%= comment.comment %></p>
+
+				<% end %>
+			<% end %>
+		</div>
+	</body>
+</html>
+			
+	

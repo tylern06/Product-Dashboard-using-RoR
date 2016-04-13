@@ -1,0 +1,30 @@
+<html lang="en">
+	<head>
+	    <title>New</title>
+	</head>
+	<body>
+		<% if flash[:errors] %>
+			<% flash[:errors].each do |e| %>
+				<p><%= e %></p>
+			<% end %>
+		<% end %>
+
+		<h1>New Product</h1>
+
+			<%= simple_form_for @products, url: create_path do |f|%>
+				<!-- input column names of products table -->
+				<%= f.input :name %>
+				<%= f.input :description %>
+				<%= f.input :price %>
+				<%= f.association :category, as: :select %>
+				<%= f.button :submit %>
+			<% end %>
+			<br><br><br>
+		<p><a href="#" onclick="history.go(-1)">Back</a></p>
+	</body>
+</html>
+			
+
+
+
+
